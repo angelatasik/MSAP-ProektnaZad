@@ -1,18 +1,14 @@
-package com.example.neverendingservice_angela.utilities;
+package com.example.neverendingservice_angela;
 
 import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
-
-import com.example.neverendingservice_angela.R;
-import com.example.neverendingservice_angela.restarter.RestartServiceBroadcastReceiver;
 
 public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        setContentView(R.layout.activity_main);
-        finish();
     }
 
     @Override
@@ -24,6 +20,7 @@ public class MainActivity extends Activity {
             ProcessMainClass bck = new ProcessMainClass();
             bck.launchService(getApplicationContext());
         }
+        finish();
     }
 
 

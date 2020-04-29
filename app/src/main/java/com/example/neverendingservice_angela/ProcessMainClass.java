@@ -1,4 +1,4 @@
-package com.example.neverendingservice_angela.utilities;
+package com.example.neverendingservice_angela;
 
 import android.content.Context;
 import android.content.Intent;

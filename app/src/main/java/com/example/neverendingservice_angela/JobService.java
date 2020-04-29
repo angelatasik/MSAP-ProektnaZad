@@ -1,7 +1,6 @@
-package com.example.neverendingservice_angela.restarter;
+package com.example.neverendingservice_angela;
 
 import android.app.job.JobParameters;
-import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
@@ -9,9 +8,6 @@ import android.os.Handler;
 import android.util.Log;
 
 import androidx.annotation.RequiresApi;
-
-import com.example.neverendingservice_angela.utilities.Globals;
-import com.example.neverendingservice_angela.utilities.ProcessMainClass;
 
 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 public class JobService extends android.app.job.JobService {

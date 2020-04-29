@@ -1,4 +1,4 @@
-package com.example.neverendingservice_angela.utilities;
+package com.example.neverendingservice_angela;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -10,6 +10,7 @@ import android.os.Build;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 
+import com.example.neverendingservice_angela.MainActivity;
 import com.example.neverendingservice_angela.R;
 
 public class Notification {

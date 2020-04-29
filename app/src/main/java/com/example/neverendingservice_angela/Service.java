@@ -1,13 +1,14 @@
-package com.example.neverendingservice_angela.utilities;
+package com.example.neverendingservice_angela;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
+import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
 
 import androidx.annotation.RequiresApi;
-
-import com.example.neverendingservice_angela.R;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -17,7 +18,12 @@ public class Service extends android.app.Service {
     protected static final int NOTIFICATION_ID =1337;
     private static String TAG="Servcie";
     private static Service mCurrentService;
+    public Context context;
+    public NetworkCheck networkCheck;
+
+    public int pingNumb=0;
     private int counter=0;
+    private final static int INTERVAL=60*1000*10;
 
     public Service(){
         super();
@@ -33,7 +39,22 @@ public class Service extends android.app.Service {
     public int onStartCommand(Intent intent, int flags,int startId){
         super.onStartCommand(intent,flags,startId);
         Log.d(TAG,"Restart Service!!");
-        counter=0;
+//        counter=0;
+        networkCheck=new NetworkCheck(this);
+        boolean network=networkCheck.NetworkCheck();
+        if(network){
+            Log.i("angela","Connected to the internet");
+            taskDelauLoop();
+        }else{
+            Log.i("angela","Not connected to the internet");
+        }
+        Log.i("angela","The onStartCommand() is called");
+
+        SharedPreferences prefs=getSharedPreferences("com.example.neverendingservice_angela.utilities.ActiveSeviceRunnning" , MODE_PRIVATE);
+
+        if(prefs.getInt("TimeCounter:",0)!=0){
+            counter=prefs.getInt("counter" ,0);
+        }
 
         if(intent==null){
             ProcessMainClass bck=new ProcessMainClass();
@@ -46,6 +67,21 @@ public class Service extends android.app.Service {
 
         return START_STICKY;
     }
+
+    private void taskDelauLoop() {
+        final Handler handler=new Handler();
+        new SimpleAsyncTask().execute();
+        new Runnable(){
+            @Override
+            public void run() {
+                handler.postDelayed(this,INTERVAL);
+                Log.i("pingNumb:", " "+pingNumb++);
+                new SimpleAsyncTask().execute();
+
+            }
+        }.run();
+    }
+
     public IBinder onBind(Intent intent){
         return  null;
     }
@@ -95,6 +131,7 @@ public class Service extends android.app.Service {
 
     public void startTime(){
         Log.i(TAG,"starting timer");
+//        new SimpleAsyncTask().execute();
         stoptimertask();
         timer=new Timer();
 

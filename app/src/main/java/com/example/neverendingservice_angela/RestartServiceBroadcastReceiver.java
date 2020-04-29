@@ -1,4 +1,4 @@
-package com.example.neverendingservice_angela.restarter;
+package com.example.neverendingservice_angela;
 
 import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
@@ -13,13 +13,12 @@ import android.os.Handler;
 import android.util.Log;
 
 import androidx.annotation.RequiresApi;
-import com.example.neverendingservice_angela.utilities.Globals;
-import com.example.neverendingservice_angela.utilities.ProcessMainClass;
 
 import org.jetbrains.annotations.Nullable;
 
 
 public class RestartServiceBroadcastReceiver extends BroadcastReceiver {
+
     public  static  final  String TAG=RestartServiceBroadcastReceiver.class.getSimpleName();
     public  static JobScheduler jobScheduler;
     private RestartServiceBroadcastReceiver restartServiceSensorReceiver;
