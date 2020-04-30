@@ -144,10 +144,9 @@ public class Service extends android.app.Service {
             timer=null;
         }
     }
-//    public static Service getmCurrentService(){
-//        return mCurrentService;
-//    }
-//    public static void setmCurrentService(Service mCurrentService){
-//        Service.mCurrentService=mCurrentService;
-//    }
+    public static Service getmCurrentService(){
+          return mCurrentService; }
+    public static void setmCurrentService(Service mCurrentService){
+        Service.mCurrentService=mCurrentService;
+    }
 }

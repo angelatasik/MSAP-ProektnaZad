@@ -70,18 +70,4 @@ public class JobService extends android.app.job.JobService {
 
         return false;
     }
-
-    //ova go nema kaj simona:
-//    public static void stopJob(android.content.Context context)
-//        {
-//            if(instance!=null && jobParameters!=null){
-//                try{
-//                    instance.unregisterReceiver(restartSensorServiceReceiver);
-//                }catch (Exception e){
-//
-//                }
-//                Log.i(TAG,"Finishing job");
-//                instance.jobFinished(jobParameters,true);
-//            }
-//        }
-    }
+}

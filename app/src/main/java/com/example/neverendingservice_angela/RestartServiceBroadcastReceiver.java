@@ -20,7 +20,7 @@ public class RestartServiceBroadcastReceiver extends BroadcastReceiver {
     public  static  final  String TAG=RestartServiceBroadcastReceiver.class.getSimpleName();
     public  static JobScheduler jobScheduler;
     private RestartServiceBroadcastReceiver restartServiceSensorReceiver;
-//    public static final int JOB_ID=1;
+
 
     public static long getVersionCode(Context context)
     {
@@ -97,7 +97,4 @@ public class RestartServiceBroadcastReceiver extends BroadcastReceiver {
 
     }
 
-//    public static void scheduleJob(@Nullable Context applicationContext) {
-//
-//    }
 }

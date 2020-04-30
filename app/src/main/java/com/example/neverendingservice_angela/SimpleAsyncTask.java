@@ -3,8 +3,6 @@ package com.example.neverendingservice_angela;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.example.neverendingservice_angela.NetworkUtils;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -19,16 +17,6 @@ public class SimpleAsyncTask extends  AsyncTask<Void,Void,String>{
 
     @Override
     protected String doInBackground(Void... voids) {
-//        Random r=new Random();
-//        int n=r.nextInt(11);
-//
-//        int s=n*200;
-
-//        try{
-//            Thread.sleep(s);
-//        }catch (InterruptedException e){
-//            e.printStackTrace();
-//        }
         try{
             String data= NetworkUtils.getBookInfo("");
             Log.i("angela", data);
@@ -54,7 +42,6 @@ public class SimpleAsyncTask extends  AsyncTask<Void,Void,String>{
                 pingCmd=pingCmd + "-s" + packetSize;
                 pingCmd=pingCmd+ "" + host;
 
-//                String pingResult="";
                 Process pping=Runtime.getRuntime().exec(pingCmd);
                 BufferedReader in=new BufferedReader(new InputStreamReader(pping.getInputStream()));
                 String inputLine;
