@@ -14,6 +14,7 @@ public class NetworkCheck {
     }
 
     public boolean NetworkCheck(){
+
         ConnectivityManager connMgr=(ConnectivityManager) mcontext.getSystemService(mcontext.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo=connMgr.getActiveNetworkInfo();
         if(networkInfo!=null)

@@ -14,14 +14,13 @@ import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
-import org.jetbrains.annotations.Nullable;
-
 
 public class RestartServiceBroadcastReceiver extends BroadcastReceiver {
 
     public  static  final  String TAG=RestartServiceBroadcastReceiver.class.getSimpleName();
     public  static JobScheduler jobScheduler;
     private RestartServiceBroadcastReceiver restartServiceSensorReceiver;
+//    public static final int JOB_ID=1;
 
     public static long getVersionCode(Context context)
     {
@@ -64,7 +63,7 @@ public class RestartServiceBroadcastReceiver extends BroadcastReceiver {
         }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    private void sheduleJob(Context context) {
+    public static void sheduleJob(Context context) {
         if(jobScheduler==null)
         {
             jobScheduler=(JobScheduler) context
@@ -98,7 +97,7 @@ public class RestartServiceBroadcastReceiver extends BroadcastReceiver {
 
     }
 
-    public static void scheduleJob(@Nullable Context applicationContext) {
-
-    }
+//    public static void scheduleJob(@Nullable Context applicationContext) {
+//
+//    }
 }

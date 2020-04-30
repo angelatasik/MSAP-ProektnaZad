@@ -11,9 +11,7 @@ public class ProcessMainClass {
     public static Intent serviceIntent = null;
     public static final String TAG = ProcessMainClass.class.getSimpleName();
 
-    public ProcessMainClass() {
-
-    }
+    public ProcessMainClass() {}
 
     public void setServiceIntent(Context context) {
         if (serviceIntent == null) {

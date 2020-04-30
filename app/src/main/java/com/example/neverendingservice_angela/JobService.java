@@ -11,20 +11,21 @@ import androidx.annotation.RequiresApi;
 
 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 public class JobService extends android.app.job.JobService {
+
+    private static String TAG = JobService.class.getSimpleName();
     private static final JobService ourInstance = new JobService();
-    private static  String TAG=JobService.class.getSimpleName();
     private static RestartServiceBroadcastReceiver restartSensorServiceReceiver;
     private static JobService instance;
-    private  static JobParameters jobParameters;
+    private static JobParameters jobParameters;
     private static Object Context;
 
     @Override
     public boolean onStartJob(JobParameters jobParameters) {
-        ProcessMainClass bck=new ProcessMainClass();
+        ProcessMainClass bck = new ProcessMainClass();
         bck.launchService(this);
         registerRestarterReceiver();
-        instance=this;
-        JobService.jobParameters=jobParameters;
+        instance = this;
+        JobService.jobParameters = jobParameters;
 
         return false;
     }
@@ -32,9 +33,9 @@ public class JobService extends android.app.job.JobService {
     private void registerRestarterReceiver() {
         if (restartSensorServiceReceiver == null)
             restartSensorServiceReceiver = new RestartServiceBroadcastReceiver();
-        else try{
+        else try {
             unregisterReceiver(restartSensorServiceReceiver);
-        } catch (Exception e){
+        } catch (Exception e) {
         }
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -55,29 +56,32 @@ public class JobService extends android.app.job.JobService {
         }, 1000);
 
     }
-        public boolean onStopJob(JobParameters jobParameters) {
-            Log.i(TAG,"Stop job");
-            Intent broadcastIntent=new Intent(Globals.RESTART_INTENT);
-            sendBroadcast(broadcastIntent);
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    unregisterReceiver(restartSensorServiceReceiver);
-                }
-            },100);
+
+    public boolean onStopJob(JobParameters jobParameters) {
+        Log.i(TAG, "Stop job");
+        Intent broadcastIntent = new Intent(Globals.RESTART_INTENT);
+        sendBroadcast(broadcastIntent);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                unregisterReceiver(restartSensorServiceReceiver);
+            }
+        }, 100);
 
         return false;
     }
-    public static void stopJob(android.content.Context context)
-        {
-            if(instance!=null && jobParameters!=null){
-                try{
-                    instance.unregisterReceiver(restartSensorServiceReceiver);
-                }catch (Exception e){
 
-                }
-                Log.i(TAG,"Finishing job");
-                instance.jobFinished(jobParameters,true);
-            }
-        }
+    //ova go nema kaj simona:
+//    public static void stopJob(android.content.Context context)
+//        {
+//            if(instance!=null && jobParameters!=null){
+//                try{
+//                    instance.unregisterReceiver(restartSensorServiceReceiver);
+//                }catch (Exception e){
+//
+//                }
+//                Log.i(TAG,"Finishing job");
+//                instance.jobFinished(jobParameters,true);
+//            }
+//        }
     }

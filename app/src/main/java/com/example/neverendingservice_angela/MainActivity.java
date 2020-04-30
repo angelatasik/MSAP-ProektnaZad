@@ -15,7 +15,7 @@ public class MainActivity extends Activity {
     protected void onResume() {
         super.onResume();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
-            RestartServiceBroadcastReceiver.scheduleJob(getApplicationContext());
+            RestartServiceBroadcastReceiver.sheduleJob(getApplicationContext());
         } else {
             ProcessMainClass bck = new ProcessMainClass();
             bck.launchService(getApplicationContext());

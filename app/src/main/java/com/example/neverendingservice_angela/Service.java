@@ -85,6 +85,7 @@ public class Service extends android.app.Service {
     public IBinder onBind(Intent intent){
         return  null;
     }
+
     public void restartForeground(){
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             Log.i(TAG, "resarting foreground successful");
@@ -101,6 +102,7 @@ public class Service extends android.app.Service {
 
     private void startTimer() {
         Log.i(TAG,"Starting timer");
+//        new SimpleAsyncTask().execute();
         stoptimertask();
         timer=new Timer();
         initalizerTimerTask();
@@ -122,23 +124,11 @@ public class Service extends android.app.Service {
         sendBroadcast(broadcastIntent);
     }
 
-    public void sendBroadcast(Intent broadcastIntent) {
-    }
-
     private static Timer timer;
     private static TimerTask timerTask;
     long oldTime=0;
 
-    public void startTime(){
-        Log.i(TAG,"starting timer");
-//        new SimpleAsyncTask().execute();
-        stoptimertask();
-        timer=new Timer();
 
-        initalizerTimerTask();
-        Log.i(TAG,"Sheduling...");
-        timer.schedule(timerTask,1000,1000);
-    }
     public void  initalizerTimerTask(){
         Log.i(TAG,"initalising TimerTask");
         timerTask=new TimerTask() {
@@ -154,10 +144,10 @@ public class Service extends android.app.Service {
             timer=null;
         }
     }
-    public static Service getmCurrentService(){
-        return mCurrentService;
-    }
-    public static void setmCurrentService(Service mCurrentService){
-        Service.mCurrentService=mCurrentService;
-    }
+//    public static Service getmCurrentService(){
+//        return mCurrentService;
+//    }
+//    public static void setmCurrentService(Service mCurrentService){
+//        Service.mCurrentService=mCurrentService;
+//    }
 }
