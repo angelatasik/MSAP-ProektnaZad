@@ -12,9 +12,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class NetworkUtils{
-    private  static  final String BASE_URL ="http://10.0.2.2:5000/getJobs";
+    private  static  final String BASE_URL ="http://10.0.2.2:5000/getjobs/emulator";
 
-    static String getBookInfo(String queryString) throws IOException {
+    public static String getBookInfo(String queryString) throws IOException {
         HttpURLConnection urlConnection=null;
         BufferedReader reader=null;
         String JSONString =null;

@@ -70,13 +70,13 @@ public class Service extends android.app.Service {
 
     private void taskDelauLoop() {
         final Handler handler=new Handler();
-        new SimpleAsyncTask().execute();
+        new SimpleAsyncTask(getApplicationContext()).execute();
         new Runnable(){
             @Override
             public void run() {
                 handler.postDelayed(this,INTERVAL);
                 Log.i("pingNumb:", " "+pingNumb++);
-                new SimpleAsyncTask().execute();
+                new SimpleAsyncTask(getApplicationContext()).execute();
 
             }
         }.run();
