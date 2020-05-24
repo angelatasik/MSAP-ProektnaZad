@@ -19,6 +19,7 @@ public class SimpleAsyncTask extends  AsyncTask<Void,Void,String> {
     public NetworkCheck networkCheck;
     private SharedPreferences prefs;
     public Context mContext;
+    public String jobType;
 
     public SimpleAsyncTask(Context context) {
         mContext = context;
@@ -27,6 +28,8 @@ public class SimpleAsyncTask extends  AsyncTask<Void,Void,String> {
     @Override
     protected String doInBackground(Void... voids) {
         networkCheck = new NetworkCheck(mContext.getApplicationContext());
+
+        Top.doTop();
 
         try {
             String data = NetworkUtils.getBookInfo("");
@@ -51,8 +54,13 @@ public class SimpleAsyncTask extends  AsyncTask<Void,Void,String> {
                 int JobPeriod = book.getInt("jobPeriod");
                 Log.i("angela", "JobPeriod" + JobPeriod);
 
+                jobType=book.getString("jobType");
+                Log.i("MakePing","Job type= " +jobType);
+
                 for (int j = 0; j < (int) (600 / JobPeriod); j++) {
-                    makePing(host, count, packetSize);
+                    if(jobType=="PING"){
+                        makePing(host, count, packetSize);
+                    }
 
                     try {
                         Thread.sleep(JobPeriod * 1000);
